@@ -1,0 +1,100 @@
+spring:
+  application:
+    name: authentication
+  output:
+    ansi:
+      enabled: ALWAYS
+
+  datasource:
+    url: ${JDBC_URL}
+    username: ${JDBC_USERNAME}
+    password: ${JDBC_PASSWORD}
+
+  mail:
+    host: ${MAIL_HOST}
+    port: ${MAIL_PORT}
+    username: ${MAIL_USERNAME}
+    password: ${MAIL_PASSWORD}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+  jpa:
+    hibernate:
+      ddl-auto: create
+    properties:
+       hibernate:
+         format_sql: true
+         highlight_sql: true
+
+
+  threads:
+    virtual:
+       enabled: true
+  security:
+    oauth2:
+          client:
+            registration:
+              google:
+                client-id: ${GOOGLE_CLIENT_ID}
+                client-secret: ${GOOGLE_CLIENT_SECRET}
+                scope: openid,email,profile
+                redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
+
+            provider:
+              google:
+                issuer-uri: https://accounts.google.com
+
+app:
+  cookies:
+    secure: ${COOKIE_SECURE:false}
+  jwt:
+    private-key-location: ${JWT_PRIVATE_KEY_LOCATION:classpath:private.pem}
+    public-key-location: ${JWT_PUBLIC_KEY_LOCATION:classpath:public.pem}
+  auth:
+    access-token:
+      time:
+        in-minutes: ${ACCESS_TOKEN_TIME_IN_MINUTES}
+    refresh-token:
+      time:
+        in-days: ${REFRESH_TOKEN_TIME_IN_DAYS}
+
+  redis:
+    services:
+      registration-verification:
+        service-name: ${REG_VERIF_SERVICE_NAME}
+        service-msg: ${REG_VERIF_SERVICE_MSG}
+        token-storage: ${REG_VERIF_TOKEN_STORAGE}
+        limits:
+          mail-sent-limit: ${REG_VERIF_MAIL_SENT_LIMIT}
+          service-attempt-limit: ${REG_VERIF_ATTEMPTS_LIMIT}
+        blocked-storage: ${REG_VERIF_BLOCKED_STORAGE}
+        limit-storage: ${REG_VERIF_LIMIT_STORAGE}
+        block-time-in-mins: ${REG_VERIF_BLOCK_TIME_IN_MINS}
+
+      password-reset:
+        service-name: ${PASS_RESET_SERVICE_NAME}
+        service-msg: ${PASS_RESET_SERVICE_MSG}
+        token-storage: ${PASS_RESET_TOKEN_STORAGE}
+        limits:
+          mail-sent-limit: ${PASS_RESET_MAIL_SENT_LIMIT}
+          service-attempt-limit: ${PASS_RESET_ATTEMPTS_LIMIT}
+        blocked-storage: ${PASS_RESET_BLOCKED_STORAGE}
+        limit-storage: ${PASS_RESET_LIMIT_STORAGE}
+        block-time-in-mins: ${PASS_RESET_BLOCK_TIME_IN_MINS}
+
+server:
+  servlet:
+    context-path: /api
+
+
+
+
+application:
+  version: 1
+
+frontend-url: http://localhost:5173
+

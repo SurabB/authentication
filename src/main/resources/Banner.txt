@@ -1,0 +1,7 @@
+ _______         __   __
+|   _   |.--.--.|  |_|  |--.
+|       ||  |  ||   _|     |
+|___|___||_____||____|__|__|
+
+${AnsiStyle.NORMAL}::Authentication Application :: (v${application.version})
+${AnsiColor.GREEN}::Spring Boot version :: ${spring-boot.version}

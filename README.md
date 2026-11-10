@@ -261,3 +261,9 @@ For Postman request examples, CSRF instructions, and endpoint screenshots, see t
     │   └── config/                    # CSRF, OAuth and app configuration
     └── resources/application.yml      # Server and environment-based configuration
 ```
+
+---
+
+## License
+
+This project is licensed under the [MIT License](LICENSE). See the `LICENSE` file for the full license text.
